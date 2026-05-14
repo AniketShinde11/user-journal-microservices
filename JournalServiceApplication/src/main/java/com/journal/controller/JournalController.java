@@ -1,5 +1,6 @@
 package com.journal.controller;
 
+import com.journal.dto.Journaldto;
 import com.journal.entity.JournalEntity;
 import com.journal.service.JournalService;
 import lombok.extern.slf4j.Slf4j;
@@ -21,15 +22,24 @@ public class JournalController {
 
 
     @PostMapping("/create")
-    public ResponseEntity<JournalEntity> createjournal(@RequestBody JournalEntity journalEntity){
-        log.info("Journal create request received for userId: {}", journalEntity.getUserid());
+    public ResponseEntity<Journaldto> createjournal(@RequestBody Journaldto journalEntity){
+        log.info("Journal create request received for userId: {}", journalEntity.getUserId());
         return ResponseEntity.ok(journalService.createJournal(journalEntity));
 
     }
 
     @GetMapping("/user/{userId}")
-    public ResponseEntity<List<JournalEntity>> getAllJournalByUserId(@PathVariable Long userid){
-        return  ResponseEntity.ok(journalService.getAllJournalByUserId(userid));
+    public ResponseEntity<List<Journaldto>> getAllJournalByUserId(@PathVariable Long userId){
+        return  ResponseEntity.ok(journalService.getAllJournalByUserId(userId));
     }
 
+    @PutMapping("/user/{userId}/{journalId}")
+    public ResponseEntity< Journaldto> updateJournal(@PathVariable Long userId,@PathVariable Long journalId ,@RequestBody JournalEntity updatedjournal){
+        return ResponseEntity.ok(journalService.updateJournal(userId,journalId,updatedjournal));
+    }
+
+    @DeleteMapping("/user/{userId}/{journalId}")
+    public void deleteJournalByUserId(@PathVariable Long userId,@PathVariable Long journalId){
+        journalService.deleteJournalByuserId(userId,journalId);
+    }
 }

@@ -1,12 +1,13 @@
-package com.journal;
+package com.emailApplication;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class JournalServiceApplication {
+public class EmailServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(JournalServiceApplication.class, args);
+		SpringApplication.run(EmailServiceApplication.class, args);
 	}
+
 }

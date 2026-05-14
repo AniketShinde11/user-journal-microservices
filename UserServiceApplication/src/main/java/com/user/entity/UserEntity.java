@@ -2,6 +2,9 @@ package com.user.entity;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -19,12 +22,19 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userid;
 
-    @Column(unique = true)
-    @NonNull
+    @Column(unique = true,nullable = false)
+    @NotBlank
     private String username;
 
-    @NonNull
+    @Column(nullable = false)
     private String password;
+
+    @Column(length = 255)
+    @Email
+    private String email;
+
+    @Size(min=10,max=10)
+    private  String mobileNo;
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "userid"))
