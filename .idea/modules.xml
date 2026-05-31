@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/EmailServiceApplication/EmailServiceApplication.iml" filepath="$PROJECT_DIR$/EmailServiceApplication/EmailServiceApplication.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JournalServiceApplication/JournalServiceApplication.iml" filepath="$PROJECT_DIR$/JournalServiceApplication/JournalServiceApplication.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/user-journal-microservice.iml" filepath="$PROJECT_DIR$/.idea/user-journal-microservice.iml" />
     </modules>
   </component>

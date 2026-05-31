@@ -3,11 +3,13 @@ package com.emailApplication.service;
 
 
 
-import org.springframework.mail.SimpleMailMessage;
+import jakarta.mail.internet.MimeMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+
 
 @Service
 public class MailService {
@@ -19,16 +21,35 @@ public class MailService {
         this.javaMailSender = javaMailSender;
 
     }
-
+    @Async
     public void sendMail(String toEmail,String subject,String message){
 
-        SimpleMailMessage mail = new SimpleMailMessage();
+        System.out.println("Before Sending Mail : " + Thread.currentThread().getName());
 
-        mail.setTo(toEmail);
-        mail.setSubject(subject);
-        mail.setText(message);
+        try{
+            MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(
+                    mimeMessage,
+                    true,
+                    "UTF-8"
+            );
 
-        javaMailSender.send(mail);
+            helper.setTo(toEmail);
+            helper.setSubject(subject);
+
+
+            helper.setText(message, true);
+
+            javaMailSender.send(mimeMessage);
+        } catch (Exception e) {
+            throw new RuntimeException("Error sending HTML email", e);
+        }
+
+
+
+
+
+
 
 
     }

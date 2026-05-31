@@ -27,7 +27,7 @@ public ResponseEntity<String> sendMail( @Valid @RequestBody EmailRequestDTO dto)
             dto.getSubject(),
             dto.getMessage()
     );
-
+    System.out.println("Controller Thread ******************************************************* : " + Thread.currentThread().getName());
     return ResponseEntity.ok("Email sent successfully");
 }
 }
