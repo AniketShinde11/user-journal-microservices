@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FeignClient(name="journal-service",url="${journal.service.url}",fallback = JournalFallback.class)
+@FeignClient(name="JOURNAL-SERVICE")
 public interface JournaClient {
 
     @PostMapping("/journal/create")

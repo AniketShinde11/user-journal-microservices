@@ -7,7 +7,6 @@ import com.user.dto.UserResponseDTO;
 import com.user.dto.UserSearchDTO;
 import com.user.entity.UserEntity;
 import com.user.service.JournalIntegrationService;
-import com.user.service.MailService;
 import com.user.service.UserSearchService;
 import com.user.service.UserService;
 import jakarta.validation.Valid;
@@ -27,7 +26,7 @@ public class UserController {
     private final JournalIntegrationService journalService;
     private final UserSearchService userSearchService;
 
-    public UserController(UserService userService, MailService mailService, JournalIntegrationService journalService, UserSearchService userSearchService){
+    public UserController(UserService userService, JournalIntegrationService journalService, UserSearchService userSearchService){
         this.userService=userService;
         this.journalService = journalService;
         this.userSearchService = userSearchService;

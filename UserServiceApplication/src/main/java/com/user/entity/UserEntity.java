@@ -29,7 +29,7 @@ public class UserEntity {
     @Column(nullable = false)
     private String password;
 
-    @Column(length = 255)
+    @Column(unique = true,length = 255)
     @Email
     private String email;
 

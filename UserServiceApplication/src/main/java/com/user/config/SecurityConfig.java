@@ -1,11 +1,9 @@
 package com.user.config;
 
-import com.user.service.JwtFilter;
 import com.user.service.UserDetailsIMPL;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -21,11 +19,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
 
     private final UserDetailsIMPL userDetailsIMPL;
-    private final JwtFilter jwtFilter;
 
-    public SecurityConfig(UserDetailsIMPL userDetailsIMPL, JwtFilter jwtFilter) {
+    public SecurityConfig(UserDetailsIMPL userDetailsIMPL) {
         this.userDetailsIMPL = userDetailsIMPL;
-        this.jwtFilter = jwtFilter;
+
     }
 
     @Bean
@@ -44,8 +41,8 @@ public class SecurityConfig {
 
                 ).userDetailsService(userDetailsIMPL)
                 .sessionManagement(session ->
-                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+
 
         return http.build();
 
